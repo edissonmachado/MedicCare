@@ -1,4 +1,4 @@
-﻿namespace MedicCare.Domain
+﻿namespace MedicCare.Domain.Common
 {
     public interface IEntity
     {

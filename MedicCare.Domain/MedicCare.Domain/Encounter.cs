@@ -1,4 +1,6 @@
-﻿namespace MedicCare.Domain
+﻿using MedicCare.Domain.Common;
+
+namespace MedicCare.Domain
 {
     public class Encounter : IEntity
     {
