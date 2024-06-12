@@ -7,16 +7,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["MedicCareApi/MedicCareApi.csproj", "MedicCareApi/"]
-RUN dotnet restore "MedicCareApi/MedicCareApi.csproj"
+COPY ["MedicCare.Api/MedicCare.Api.csproj", "MedicCare.Api/"]
+RUN dotnet restore "MedicCare.Api/MedicCare.Api.csproj"
 COPY . .
-WORKDIR "/src/MedicCareApi"
-RUN dotnet build "MedicCareApi.csproj" -c Release -o /app/build
+WORKDIR "/src/MedicCare.Api"
+RUN dotnet build "MedicCare.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "MedicCareApi.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "MedicCare.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "MedicCareApi.dll"]
+ENTRYPOINT ["dotnet", "MedicCare.Api.dll"]
