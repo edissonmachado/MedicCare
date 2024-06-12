@@ -5,4 +5,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MedicCare.Domain\MedicCare.Domain\MedicCare.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
