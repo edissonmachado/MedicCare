@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicCare.Api", "MedicCare.Presentation\MedicCare.Api\MedicCare.Api.csproj", "{C002EBF6-B597-4509-A540-43ECD4351CC5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MedicCare.Presentation", "MedicCare.Presentation", "{6EF7B91F-A564-4336-A220-5A04CD28373B}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "MedicCare.Presentation\docker-compose\docker-compose.dcproj", "{81823DBA-E843-4CFF-A140-378E723641AE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MedicCare.Domain", "MedicCare.Domain", "{D60BE2D6-BF9D-4FFC-8590-E666022E88FF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicCare.Domain", "MedicCare.Domain\MedicCare.Domain\MedicCare.Domain.csproj", "{8AA6AA85-7384-4CD4-BF11-5F033567CB60}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MedicCare.Persistence", "MedicCare.Persistence", "{402313F0-07DB-4355-880E-BD9342E3FE4A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicCare.Persistence", "MedicCare.Persistence\MedicCare.Persistence.csproj", "{BFF3B14A-3E46-49B2-8C68-00A2461B4E52}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MedicCare.App", "MedicCare.App", "{217A5F41-1216-4B94-AAEF-BA0538B73EC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicCare.App", "MedicCare.App\MedicCare.App.csproj", "{4A92EAE3-1BFE-42C2-97B5-15891F1B1F82}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C002EBF6-B597-4509-A540-43ECD4351CC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C002EBF6-B597-4509-A540-43ECD4351CC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C002EBF6-B597-4509-A540-43ECD4351CC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C002EBF6-B597-4509-A540-43ECD4351CC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81823DBA-E843-4CFF-A140-378E723641AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81823DBA-E843-4CFF-A140-378E723641AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81823DBA-E843-4CFF-A140-378E723641AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81823DBA-E843-4CFF-A140-378E723641AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AA6AA85-7384-4CD4-BF11-5F033567CB60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AA6AA85-7384-4CD4-BF11-5F033567CB60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AA6AA85-7384-4CD4-BF11-5F033567CB60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AA6AA85-7384-4CD4-BF11-5F033567CB60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFF3B14A-3E46-49B2-8C68-00A2461B4E52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFF3B14A-3E46-49B2-8C68-00A2461B4E52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFF3B14A-3E46-49B2-8C68-00A2461B4E52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFF3B14A-3E46-49B2-8C68-00A2461B4E52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A92EAE3-1BFE-42C2-97B5-15891F1B1F82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A92EAE3-1BFE-42C2-97B5-15891F1B1F82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A92EAE3-1BFE-42C2-97B5-15891F1B1F82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A92EAE3-1BFE-42C2-97B5-15891F1B1F82}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C002EBF6-B597-4509-A540-43ECD4351CC5} = {6EF7B91F-A564-4336-A220-5A04CD28373B}
+		{81823DBA-E843-4CFF-A140-378E723641AE} = {6EF7B91F-A564-4336-A220-5A04CD28373B}
+		{8AA6AA85-7384-4CD4-BF11-5F033567CB60} = {D60BE2D6-BF9D-4FFC-8590-E666022E88FF}
+		{BFF3B14A-3E46-49B2-8C68-00A2461B4E52} = {402313F0-07DB-4355-880E-BD9342E3FE4A}
+		{4A92EAE3-1BFE-42C2-97B5-15891F1B1F82} = {217A5F41-1216-4B94-AAEF-BA0538B73EC2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B6E280B2-12ED-4220-A9BF-84C2F4597C06}
+	EndGlobalSection
+EndGlobal

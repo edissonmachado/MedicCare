@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  mediccareapi:
+    image: ${DOCKER_REGISTRY-}mediccareapi
+    build:
+      context: .
+      dockerfile: ../MedicCare.Api/Dockerfile
