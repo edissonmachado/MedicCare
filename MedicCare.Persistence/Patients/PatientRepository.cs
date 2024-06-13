@@ -17,7 +17,7 @@ namespace MedicCare.Persistence.Patients
         public async Task<List<Encounter>> GetEncounters()
         {
             string query = "WITH tempEncounters as " +
-                    "(SELECT " +
+                    " (SELECT " +
                     "	encounter.* " +
                     "	 , ROW_NUMBER() OVER(partition by pa.Id, py.Id order by pa.Id, py.Id) AS ROWNO " +
                     "    , pa.Id " +
@@ -34,7 +34,7 @@ namespace MedicCare.Persistence.Patients
                     " INNER JOIN payer as py on encounter.payer_id = py.Id " +
                     " INNER JOIN patient as pa on encounter.patient_id = pa.Id " +
                     " INNER JOIN facility as f on encounter.facility_id = f.Id)" +
-                "SELECT * FROM tempEncounters c1 " +
+                " SELECT * FROM tempEncounters c1 " +
                 "    JOIN (SELECT patient_id, payer_id, MAX(rowno) as maxVal FROM tempEncounters group by patient_id, payer_id) c2 " +
                 "    ON c1.patient_id=c2.patient_id AND c1.payer_id=c2.payer_id AND c1.rowno=c2.maxVal " +
                 "    ORDER BY rowno;";
