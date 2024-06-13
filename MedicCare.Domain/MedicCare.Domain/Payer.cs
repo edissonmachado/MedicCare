@@ -6,12 +6,12 @@ namespace MedicCare.Domain
     {
         public int Id { get; set; }
         public string CompanyName { get; set; } 
-        public string City { get; set; }
+        public string CompanyCity { get; set; }
 
         public Payer(string name, string city)
         {
             CompanyName = name;
-            City = city;
+            CompanyCity = city;
         }
 
         public Payer() { }
