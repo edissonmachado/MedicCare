@@ -7,6 +7,6 @@ namespace MedicCare.App.Patients
 {
     public interface IPatientRepository : IRepository<Patient>
     {
-        Task<List<Encounter>> GetPatientReports();
+        Task<List<Encounter>> GetEncounters();
     }
 }
