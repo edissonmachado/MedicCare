@@ -24,3 +24,5 @@ Philadelphia, New York, Boston
 **Developer notes:**
 
   This project was based on Clean Architecture principles and CQRS was implemented. It can be seen as a bit overengineered, but it was done this way to show some of the learned skills in my dev career.
+
+  There is a know issue regarding the database naming, but the application works flawlessly anyways.
