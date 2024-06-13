@@ -19,7 +19,7 @@ services:
     depends_on:
       - db
     environment:
-      - ConnectionStrings__DefaultConnection=Server=db;Port=5432;Database=user;User Id=user;Password=password;
+      - ConnectionStrings__MedicCareDb=Server=db;Port=5432;Database=user;User Id=user;Password=password;
 
 volumes:
   postgres_data:
