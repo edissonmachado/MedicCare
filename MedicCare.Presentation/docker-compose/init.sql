@@ -1,5 +1,3 @@
-CREATE DATABASE mediccare;
-
 CREATE TABLE IF NOT EXISTS patient (
     id SERIAL PRIMARY KEY,
     firstname VARCHAR(50),
