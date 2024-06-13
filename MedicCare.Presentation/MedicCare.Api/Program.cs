@@ -1,3 +1,4 @@
+using MedicCare.Api.ConfigServices;
 using MedicCare.App.Common;
 using MedicCare.App.Patients;
 using MedicCare.Persistence.Common;
@@ -17,6 +18,7 @@ builder.Services.AddMediatR(cfg
 
 builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddTransient<IPatientRepository, PatientRepository>();
+builder.Services.AddSingleton<IDbContext, DapperContext>();
 
 var app = builder.Build();
 
