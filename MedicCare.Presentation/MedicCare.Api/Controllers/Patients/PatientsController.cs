@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using MedicCare.App.Patients.GetPatient;
 using MedicCare.App.Patients.GetPatientReports;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,7 +19,10 @@ namespace MedicCare.Api.Controllers.Patients
         [HttpGet("{id}")]
         public async Task<ActionResult> GetById(int id)
         {
-            return await Task.FromResult(Ok($"Patient id: {id}"));
+            var query = new GetPatientByIdQuery() { Id = id};
+
+            var result = await _mediator.Send(query).ConfigureAwait(false);
+            return Ok(result);
         }
 
         [HttpGet]
@@ -26,15 +30,10 @@ namespace MedicCare.Api.Controllers.Patients
         public async Task<ActionResult> GetEncounters()
         {
             var query = new GetPatientsEncountersQuery();
-            try
-            {
-                var result = await _mediator.Send(query).ConfigureAwait(false);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            
+            var result = await _mediator.Send(query).ConfigureAwait(false);
+            return Ok(result);
+
         }
     }
 }
