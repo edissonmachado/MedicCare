@@ -15,5 +15,7 @@ namespace MedicCare.Domain
             Facility = facility;
             Payer = payer;
         }
+
+        public Encounter() { }
     }
 }

@@ -14,5 +14,7 @@ namespace MedicCare.Domain
             FirstName = firstName;
             LastName = lastName;
         }
+
+        public Patient() { }
     }
 }
