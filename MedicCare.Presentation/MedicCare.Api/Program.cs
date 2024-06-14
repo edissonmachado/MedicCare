@@ -18,7 +18,9 @@ builder.Services.AddMediatR(cfg
 
 builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddTransient<IPatientRepository, PatientRepository>();
-builder.Services.AddSingleton<IDbContext, DapperContext>();
+
+var connectionString = builder.Configuration.GetConnectionString("MedicCareDb");
+builder.Services.AddSingleton<IDbContext>(new DapperContext(connectionString));
 
 var app = builder.Build();
 
