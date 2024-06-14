@@ -35,7 +35,8 @@ namespace MedicCare.App.Patients.GetPatientReports
                 {
                     if (!record.Cities.Contains(encounter.Payer.CompanyCity))
                     {
-                        record.Cities += $", {encounter.Payer.CompanyCity}";
+                        if(!record.Cities.Contains(encounter.Payer.CompanyCity))
+                            record.Cities.Add(encounter.Payer.CompanyCity);
                     }
                 }
                 else
@@ -43,14 +44,14 @@ namespace MedicCare.App.Patients.GetPatientReports
                     var newRecord = new ReportRecord()
                     {
                         Name = $"{encounter.Patient.LastName}, {encounter.Patient.FirstName}",
-                        Cities = encounter.Payer.CompanyCity,
+                        Cities = new List<string> { encounter.Payer.CompanyCity },
                         Category = encounter.Patient.Age < CategoryAgeLimit ? 'A' : 'B',
                     };
                     records.Add(encounter.Patient.Id, newRecord);
                 }    
             }
 
-            records = records.Where(kv => kv.Value.Cities.Contains(",")).ToDictionary(kv => kv.Key, kv => kv.Value);
+            records = records.Where(kv => kv.Value.Cities.Count > 1).ToDictionary(kv => kv.Key, kv => kv.Value);
 
             return records.Values.ToList();
         }
