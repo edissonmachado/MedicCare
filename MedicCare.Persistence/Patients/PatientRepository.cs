@@ -17,30 +17,30 @@ namespace MedicCare.Persistence.Patients
         public async Task<List<Encounter>> GetEncounters()
         {
             string query =
-                @"WITH tempEncounters as (
+                @"WITH tempEncounters AS (
                      SELECT encounter.* 
                     	, ROW_NUMBER() OVER(partition by pa.Id, py.Id order by pa.Id, py.Id) AS ROWNO 
                         , pa.Id 
-                        , pa.firstname as firstName 
-                        , pa.lastname as lastName 
+                        , pa.firstname AS firstName 
+                        , pa.lastname AS lastName 
                         , pa.age 
                         , py.Id 
-                        , py.payer_name as CompanyName 
-                        , py.city as CompanyCity 
+                        , py.payer_name AS CompanyName 
+                        , py.city AS CompanyCity 
                         , f.Id 
-                        , f.facility_name as BranchName 
-                        , f.city as BranchCity 
+                        , f.facility_name AS BranchName 
+                        , f.city AS BranchCity 
                      FROM encounter 
-                     INNER JOIN payer as py on encounter.payer_id = py.Id 
-                     INNER JOIN patient as pa on encounter.patient_id = pa.Id 
-                     INNER JOIN facility as f on encounter.facility_id = f.Id
+                     INNER JOIN payer AS py ON encounter.payer_id = py.Id 
+                     INNER JOIN patient AS pa ON encounter.patient_id = pa.Id 
+                     INNER JOIN facility AS f ON encounter.facility_id = f.Id
                 )
                  
                 SELECT * FROM tempEncounters AS results 
-                JOIN (SELECT patient_id, payer_id, MAX(rowno) as maxVal 
+                JOIN (SELECT patient_id, payer_id, MAX(rowno) AS maxVal 
                        FROM tempEncounters group by patient_id, payer_id) AS values 
-                ON results.patient_id=values.patient_id
-                AND results.payer_id=values.payer_id AND results.rowno=values.maxVal 
+                ON results.patient_id = values.patient_id
+                AND results.payer_id = values.payer_id AND results.rowno=values.maxVal 
                 ORDER BY rowno;";
 
             using var connection = _context.CreateConnection();
