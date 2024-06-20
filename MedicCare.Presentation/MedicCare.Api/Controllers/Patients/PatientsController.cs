@@ -35,5 +35,16 @@ namespace MedicCare.Api.Controllers.Patients
             return Ok(result);
 
         }
+
+        [HttpGet]
+        [Route("encounters/light")]
+        public async Task<ActionResult> GetEncountersLight()
+        {
+            var query = new GetPatientsEncountersLightQuery();
+
+            var result = await _mediator.Send(query).ConfigureAwait(false);
+            return Ok(result);
+
+        }
     }
 }

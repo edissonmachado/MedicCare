@@ -20,7 +20,7 @@ namespace MedicCare.App.Patients.GetPatientReports
 
         public async Task<List<ReportRecord>> Handle(GetPatientsEncountersQuery request, CancellationToken cancellationToken)
         {
-            var encounters = await _patientRepository.GetEncounters().ConfigureAwait(false);
+            var encounters = await _patientRepository.GetEncountersAsync().ConfigureAwait(false);
             var response = FormatResponse(encounters);
             return response;
         }

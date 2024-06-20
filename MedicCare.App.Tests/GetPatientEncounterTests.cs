@@ -22,7 +22,7 @@ namespace MedicCare.App.Tests
             string[] expectedCities = new string[] { "city1", "city2" };
             char expectedCategory = 'A';
 
-            _repo.Setup(c => c.GetEncounters())
+            _repo.Setup(c => c.GetEncountersAsync())
                 .Returns(GetUniquePatientEncountersForTwoCities);
 
             var handler = new GetPatientEncountersQueryHandler(_repo.Object);
@@ -42,7 +42,7 @@ namespace MedicCare.App.Tests
             string[] expectedCities = new string[] { "city1", "city2" };
             
 
-            _repo.Setup(c => c.GetEncounters())
+            _repo.Setup(c => c.GetEncountersAsync())
                 .Returns(GetTwoPatientsEncountersForTwoCities);
 
             var handler = new GetPatientEncountersQueryHandler(_repo.Object);

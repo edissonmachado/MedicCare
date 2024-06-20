@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using MedicCare.App.Patients;
+using MedicCare.App.Patients.GetPatientReports;
 using MedicCare.Domain;
 using MedicCare.Persistence.Common;
 
@@ -14,7 +15,7 @@ namespace MedicCare.Persistence.Patients
             _context = context;
         }
 
-        public async Task<List<Encounter>> GetEncounters()
+        public async Task<List<Encounter>> GetEncountersAsync()
         {
             string query =
                 @"WITH tempEncounters AS (
@@ -52,6 +53,33 @@ namespace MedicCare.Persistence.Patients
                     encounter.Facility = facility;
                     return encounter;
                 }).ConfigureAwait(false);
+
+            return result.ToList();
+        }
+
+        public async Task<List<EncounterReport>> GetEncountersLightAsync()
+        {
+            string query =
+                @"WITH tempEncounters AS (
+	                SELECT pa.firstname AS firstName 
+		                , pa.lastname AS lastName 
+		                , pa.age 
+		                , py.city AS CompanyCity 
+	                FROM encounter 
+	                INNER JOIN payer AS py ON encounter.payer_id = py.Id 
+	                INNER JOIN patient AS pa ON encounter.patient_id = pa.Id 
+	                GROUP BY firstname, lastname, age, companycity
+                )
+
+                SELECT firstname, lastname, age, string_agg(companycity, ', ') AS Cities
+	                FROM tempEncounters AS results
+	                GROUP BY firstname, lastname, age
+                HAVING string_agg(companycity, ', ') LIKE '%,%';";
+
+            using var connection = _context.CreateConnection();
+            var result = await connection.QueryAsync<EncounterReport>(query).ConfigureAwait(false);
+
+            if (result == null) return new List<EncounterReport>();
 
             return result.ToList();
         }
