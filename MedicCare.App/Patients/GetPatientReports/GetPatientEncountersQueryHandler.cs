@@ -1,16 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using MedicCare.Domain;
 
 namespace MedicCare.App.Patients.GetPatientReports
 {
-    public class GetPatientEncountersQueryHandler : IRequestHandler<GetPatientsEncountersQuery, List<ReportRecord>>
+    public class GetPatientEncountersQueryHandler : IRequestHandler<GetPatientsEncountersQuery, List<EncounterReportResult>>
     {
-        private const int CategoryAgeLimit = 16;
-
         private readonly IPatientRepository _patientRepository;
 
         public GetPatientEncountersQueryHandler(IPatientRepository patientRepository)
@@ -18,42 +14,27 @@ namespace MedicCare.App.Patients.GetPatientReports
             _patientRepository = patientRepository;
         }
 
-        public async Task<List<ReportRecord>> Handle(GetPatientsEncountersQuery request, CancellationToken cancellationToken)
+        public async Task<List<EncounterReportResult>> Handle(GetPatientsEncountersQuery request, CancellationToken cancellationToken)
         {
             var encounters = await _patientRepository.GetEncountersAsync().ConfigureAwait(false);
             var response = FormatResponse(encounters);
             return response;
         }
 
-        private List<ReportRecord> FormatResponse(IEnumerable<Encounter> encounters)
+        private List<EncounterReportResult> FormatResponse(IEnumerable<EncounterReport> encounters)
         {
-            var records = new Dictionary<int, ReportRecord>();
-
-            foreach(var encounter in encounters)
+            var result = new List<EncounterReportResult>();
+            foreach (var encounter in encounters)
             {
-                if(records.TryGetValue(encounter.Patient.Id, out var record))
+                result.Add(new EncounterReportResult
                 {
-                    if (!record.Cities.Contains(encounter.Payer.CompanyCity))
-                    {
-                        if(!record.Cities.Contains(encounter.Payer.CompanyCity))
-                            record.Cities.Add(encounter.Payer.CompanyCity);
-                    }
-                }
-                else
-                {
-                    var newRecord = new ReportRecord()
-                    {
-                        Name = $"{encounter.Patient.LastName}, {encounter.Patient.FirstName}",
-                        Cities = new List<string> { encounter.Payer.CompanyCity },
-                        Category = encounter.Patient.Age < CategoryAgeLimit ? 'A' : 'B',
-                    };
-                    records.Add(encounter.Patient.Id, newRecord);
-                }    
+                    Name = encounter.Name,
+                    Cities = encounter.Cities,
+                    Category = encounter.Category,
+                });
             }
 
-            records = records.Where(kv => kv.Value.Cities.Count > 1).ToDictionary(kv => kv.Key, kv => kv.Value);
-
-            return records.Values.ToList();
+            return result;
         }
     }
 }

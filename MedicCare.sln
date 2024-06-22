@@ -21,10 +21,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MedicCare.App", "MedicCare.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicCare.App", "MedicCare.App\MedicCare.App.csproj", "{4A92EAE3-1BFE-42C2-97B5-15891F1B1F82}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MedicCare.Tests", "MedicCare.Tests", "{498BFA0D-8A12-498C-848F-A6A388F0ACB7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicCare.App.Tests", "MedicCare.App.Tests\MedicCare.App.Tests.csproj", "{14DDE0C9-0BA8-45AA-83A7-32E25C971DFB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,10 +47,6 @@ Global
 		{4A92EAE3-1BFE-42C2-97B5-15891F1B1F82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A92EAE3-1BFE-42C2-97B5-15891F1B1F82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A92EAE3-1BFE-42C2-97B5-15891F1B1F82}.Release|Any CPU.Build.0 = Release|Any CPU
-		{14DDE0C9-0BA8-45AA-83A7-32E25C971DFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{14DDE0C9-0BA8-45AA-83A7-32E25C971DFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{14DDE0C9-0BA8-45AA-83A7-32E25C971DFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{14DDE0C9-0BA8-45AA-83A7-32E25C971DFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,7 +57,6 @@ Global
 		{8AA6AA85-7384-4CD4-BF11-5F033567CB60} = {D60BE2D6-BF9D-4FFC-8590-E666022E88FF}
 		{BFF3B14A-3E46-49B2-8C68-00A2461B4E52} = {402313F0-07DB-4355-880E-BD9342E3FE4A}
 		{4A92EAE3-1BFE-42C2-97B5-15891F1B1F82} = {217A5F41-1216-4B94-AAEF-BA0538B73EC2}
-		{14DDE0C9-0BA8-45AA-83A7-32E25C971DFB} = {498BFA0D-8A12-498C-848F-A6A388F0ACB7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B6E280B2-12ED-4220-A9BF-84C2F4597C06}

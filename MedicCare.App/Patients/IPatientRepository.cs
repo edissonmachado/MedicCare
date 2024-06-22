@@ -8,8 +8,6 @@ namespace MedicCare.App.Patients
 {
     public interface IPatientRepository : IRepository<Patient>
     {
-        Task<List<Encounter>> GetEncountersAsync();
-
-        Task<List<EncounterReport>> GetEncountersLightAsync();
+        Task<List<EncounterReport>> GetEncountersAsync();
     }
 }
