@@ -60,21 +60,23 @@ namespace MedicCare.Persistence.Patients
         public async Task<List<EncounterReport>> GetEncountersLightAsync()
         {
             string query =
-                @"WITH tempEncounters AS (
-	                SELECT pa.firstname AS firstName 
-		                , pa.lastname AS lastName 
-		                , pa.age 
-		                , py.city AS CompanyCity 
-	                FROM encounter 
-	                INNER JOIN payer AS py ON encounter.payer_id = py.Id 
-	                INNER JOIN patient AS pa ON encounter.patient_id = pa.Id 
-	                GROUP BY firstname, lastname, age, companycity
-                )
+                @"WITH temp1 AS (
+                    SELECT firstname, lastname, age, city
+	                    , (SELECT COUNT(DISTINCT payer_id) FROM encounter WHERE encounter.patient_id = pa.id) AS visits
+                    FROM patient AS pa
+	                    INNER JOIN encounter ON encounter.patient_id = pa.id
+	                    INNER JOIN payer AS py ON encounter.payer_id = py.id
+                    ORDER BY visits
+	                    ),
+                    temp2 AS (
+                    SELECT firstname, lastname, age, city, visits FROM temp1
+                    WHERE visits > 1
+                    GROUP BY firstname, lastname, age, city, visits
+                    )
 
-                SELECT firstname, lastname, age, string_agg(companycity, ', ') AS Cities
-	                FROM tempEncounters AS results
-	                GROUP BY firstname, lastname, age
-                HAVING string_agg(companycity, ', ') LIKE '%,%';";
+                    SELECT firstname, lastname, age, string_agg(city, ', ') AS Cities FROM temp2 
+                    GROUP BY firstname, lastname, age, visits
+                    ORDER BY visits;";
 
             using var connection = _context.CreateConnection();
             var result = await connection.QueryAsync<EncounterReport>(query).ConfigureAwait(false);
